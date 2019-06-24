@@ -1,0 +1,41 @@
+@charset "utf-8";
+.btn.btn-primary{
+    background-color: #718B8C;
+}
+.btn.btn-primary:hover{
+    transition-delay: 30ms;
+    background-color: #233534;
+}
+
+.main {
+    background-color: #88BDBC;
+}
+.main .container {
+    font-size: large;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    margin-top: 96px;
+}
+.main .container.col-md-11.product-container  {
+    border-radius: 0px;
+    margin-top: 9px;
+}
+a.custom-card:hover {
+    color: inherit;
+}
+a.custom-card {
+    color: #000000;
+    text-decoration: none !important;
+}
+
+.card.h-100:hover{
+    transition-delay: 50ms;
+    background-color: #376463;
+    color: #FFFFFF;
+}
+.main .container.col-md-11 .row {
+    height: 366px;
+}
+.Register {
+    background-color: #E5C142 !important;
+}
