@@ -13,15 +13,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+@SessionAttributes("user")
 @Controller
 public class UserController
 {
@@ -56,7 +53,7 @@ public class UserController
         {
             Category category=new Category();
             category.setName(cat);
-            category.setProducts(productRepo.findByCatagories(cat));
+            category.setProducts(productRepo.findByCategories(cat));
             categories.add(category);
         }
         model.addAttribute("categories",categories);
@@ -76,6 +73,18 @@ public class UserController
             userRepo.save(user);
         }
         return "index";
+    }
+    @GetMapping("/addproduct")
+    public String addproduct(Model model){
+        model.addAttribute("product",new Product());
+        return "addproduct";
+    }
+    @PostMapping("/addproduct")
+    public String addproducta(@ModelAttribute("product") Product product,@RequestParam String categories,@RequestParam String tags){
+
+
+        return "redirect:/";
+
     }
 
 }

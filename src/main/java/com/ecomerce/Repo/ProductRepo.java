@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ProductRepo extends MongoRepository<Product,String>
 {
-    List<Product> findByCatagories(String catagories);
+    List<Product> findByCategories(String categories);
 }

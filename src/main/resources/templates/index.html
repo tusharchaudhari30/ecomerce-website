@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -12,43 +12,42 @@
 </head>
 
 <body class="main" style="padding-top: 70px">
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light"><a class="navbar-brand" href="#">LOGO</a>
-    <button aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-            data-target="#navbarSupportedContent1" data-toggle="collapse" type="button"><span
-            class="navbar-toggler-icon"></span></button>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light"> <a class="navbar-brand" th:href="@{/}">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent1">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-            <li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                                             data-toggle="dropdown" href="#" id="navbarDropdown1"
-                                             role="button"> Dropdown </a>
-                <div aria-labelledby="navbarDropdown1" class="dropdown-menu"><a class="dropdown-item"
-                                                                                href="#">Action</a> <a
-                        class="dropdown-item" href="#">Another action</a>
+            <li class="nav-item active"> <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#">Link</a> </li>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" th:href="@{/addproduct}">Add Product</a>
+                    <a class="dropdown-item" th:href="@{/updateproduct}">Update Product</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a></div>
+                    <a class="dropdown-item" th:href="@{/edithome}">Edit Home Page</a> </div>
             </li>
-            <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+            </div>
+
+
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <span th:if="${user.email == null }" class="col-md-2">
+        <span th:if="${#authentication.name == 'anonymousUser' }" class="col-md-2">
         <form class="" th:action="@{/login}">
             <button class="btn btn-primary col-10" type="submit">Login</button>
         </form>
         </span>
-        <span th:if="${user.email != null}">
+        <span th:if="${#authentication.name != 'anonymousUser'}">
             <div class="">
   	            <ul class="navbar-nav col-12">
                 <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" id="navDropDownLink"
-                       th:text="${user.email}"
+                       th:text="${#authentication.name}"
                     >
                 	    USERNAME
             		</a>

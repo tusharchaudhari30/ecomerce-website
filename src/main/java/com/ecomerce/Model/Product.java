@@ -15,18 +15,38 @@ public class Product
     @Indexed(unique = true)
     String name;
     float price;
-    List<String> catagories;
+    List<String> categories;
+    List<String> tags;
     String img_url;
+    int quantity;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", catagories=" + catagories +
+                ", price=" + price +
+                ", categories=" + categories +
+                ", tags=" + tags +
                 ", img_url='" + img_url + '\'' +
+                ", quantity=" + quantity +
                 '}';
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getId() {
@@ -53,12 +73,12 @@ public class Product
         this.price = price;
     }
 
-    public List<String> getCatagories() {
-        return catagories;
+    public List<String> getCategories() {
+        return categories;
     }
 
-    public void setCatagories(List<String> catagories) {
-        this.catagories = catagories;
+    public void setCategories(List<String> catagories) {
+        this.categories = catagories;
     }
 
     public String getImg_url() {
@@ -72,7 +92,7 @@ public class Product
     public Product (String name, float price, List<String> catagories, String img_url) {
         this.name = name;
         this.price = price;
-        this.catagories = catagories;
+        this.categories = catagories;
         this.img_url = img_url;
     }
 
