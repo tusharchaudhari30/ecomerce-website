@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Document(collection = "product")
-public class Product
-{
+public class Product {
     @Id
     String id;
     @Indexed(unique = true)
@@ -19,6 +18,16 @@ public class Product
     List<String> tags;
     String img_url;
     int quantity;
+
+    public Product(String name, float price, List<String> catagories, String img_url) {
+        this.name = name;
+        this.price = price;
+        this.categories = catagories;
+        this.img_url = img_url;
+    }
+
+    public Product() {
+    }
 
     public List<String> getTags() {
         return tags;
@@ -87,15 +96,5 @@ public class Product
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
-    }
-
-    public Product (String name, float price, List<String> catagories, String img_url) {
-        this.name = name;
-        this.price = price;
-        this.categories = catagories;
-        this.img_url = img_url;
-    }
-
-    public Product() {
     }
 }

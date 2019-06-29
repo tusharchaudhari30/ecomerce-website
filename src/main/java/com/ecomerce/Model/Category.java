@@ -2,8 +2,7 @@ package com.ecomerce.Model;
 
 import java.util.List;
 
-public class Category
-{
+public class Category {
     String name;
     List<Product> products;
 

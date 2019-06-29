@@ -5,8 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
-public class User
-{
+public class User {
     @Id
     String id;
     @Indexed(unique = true)
