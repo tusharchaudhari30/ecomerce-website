@@ -77,6 +77,7 @@ public class UserController
     @GetMapping("/addproduct")
     public String addproduct(Model model){
         model.addAttribute("product",new Product());
+
         return "addproduct";
     }
     @PostMapping("/addproduct")
