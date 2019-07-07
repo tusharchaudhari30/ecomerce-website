@@ -10,7 +10,7 @@ public class MainServiceTest {
     @Test
     public void findUserByEmail() {
         User user=new User();
-        user.setEmail("blazeric30@gmail.com")
+        user.setEmail("blazeric30@gmail.com");
         assertSame("User are same",user,user);
     }
 }
