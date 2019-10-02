@@ -33,7 +33,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String home(Authentication authentication, Model model) {
         User u = new User();
         Homepage h = new Homepage();
@@ -45,13 +45,13 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/home/signup")
     public String signup(Model model) {
         model.addAttribute("user", new User());
         return "signup";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/home/signup")
     public String signuppost(@ModelAttribute("user") User user) {
         if (user != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -61,14 +61,14 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/addproduct")
+    @GetMapping("/admin/addproduct")
     public String addproduct(Model model) {
         model.addAttribute("product", new Product());
 
         return "addproduct";
     }
 
-    @PostMapping("/addproduct")
+    @PostMapping("/admin/addproduct")
     public String addproducta(@ModelAttribute("product") Product product, @RequestParam String categories, @RequestParam String tags) {
 
 

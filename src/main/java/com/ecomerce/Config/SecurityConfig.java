@@ -41,18 +41,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .authorizeRequests()
-                .anyRequest()
-                .permitAll()
+                .antMatchers("/home/**").permitAll()
+                .antMatchers("/admin/**","/resources/**").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
+                .successForwardUrl("/home")
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").permitAll();
+                .logoutSuccessUrl("/home").permitAll();
     }
 
     @Bean
